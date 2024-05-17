@@ -1,0 +1,28 @@
+version: "3.1"
+
+rules:
+  - rule: Say great anytime the user says great
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: activate weather form
+    steps:
+      - intent: weather
+      - action: weather_form
+      - active_loop: weather_form
+
+  - rule: Submit form
+    condition:
+      - active_loop: weather_form # Condition that form is active.
+    steps:
+      - action: weather_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_weather_form_submit # The action we want to run when the form is submitted.
