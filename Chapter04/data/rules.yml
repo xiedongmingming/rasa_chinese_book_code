@@ -1,5 +1,6 @@
-version: "3.0"
+version: "3.1"
 rules:
+  # 将问题分类映射到对应的动作上
   - rule: respond to FAQs
     steps:
       - intent: faq

@@ -1,8 +1,9 @@
-# [Chapter 04] 使用 ResponseSelector 实现 FAQ 和闲聊功能
+# [CHAPTER04] 使用RESPONSESELECTOR实现FAQ和闲聊功能
 
-## Rasa 版本和项目依赖
+## RASA版本和项目依赖
 
-本书所用代码均在 Rasa 3.0.X 版本中完成。
+本书所用代码均在RASA3.0.X版本中完成。
+
 读者可以使用：
 
 ```shell
@@ -11,15 +12,15 @@ pip install --no-deps -r ../full_requirements.txt
 
 完成项目代码的依赖安装。
 
-## 训练 Rasa 模型
+## 训练RASA模型
 
 ```bash
 rasa train
 ```
 
-## 启动 Rasa 服务器和客户端
+## 启动RASA服务器和客户端
 
-### 运行 Rasa 服务器
+### 运行RASA服务器
 
 ```bash
 rasa run --cors "*"
