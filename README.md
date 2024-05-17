@@ -2,16 +2,16 @@
   <img src="media/book.jpg">
 </div>
 
-# 《Rasa 实战：构建开源对话机器人》官方随书代码 | The official source code of *Rasa in Action: Building Open Source Conversational AI*
+# 《RASA实战：构建开源对话机器人》官方随书代码 | The official source code of *Rasa in Action: Building Open Source Conversational AI*
 
-全球首本关于 Rasa 的中文图书。Rasa 联合创始人兼 CTO Alan Nichol 亲笔作序力荐。快速创建工业级智能对话机器人。
+全球首本关于RASA的中文图书。RASA联合创始人兼 CTO Alan Nichol 亲笔作序力荐。快速创建工业级智能对话机器人。
 
 The world's first Chinese book on the Rasa framework, with a foreword by Rasa co-founder and CTO Alan Nichol. It helps developers quickly create industrial-grade conversational chatbots.
 
 ## 内容简介 | Summary
 
-Rasa 是一款开源的对话机器人框架，能让开发者使用机器学习技术快速创建工业级的对话机器人。得益于丰富的功能、先进的机器学习能力和可以快速上手的特性，Rasa 框架是目前流行的开源对话机器人框架。
-本书首先介绍 Rasa 的两个核心组件——Rasa NLU 和 Rasa Core 的工作流程；然后详细介绍通过使用 Rasa 生态系统从头开始构建、配置、训练和服务不同类型的对话机器人的整体过程，如任务型、FAQ、知识图谱聊天机器人等，其中包括使用基于表单（form）的对话管理、ResponseSelector 来处理闲聊和 FAQ，利用知识库来回答动态查询的问题等，以及自定义 Rasa 框架，使用对话驱动的开发模式和工具来开发对话机器人，探索机器人能做什么，并通过交互式学习来轻松修复它所犯的任何错误；最后会介绍将 Rasa 系统部署到具有高性能和高可扩展性的生产环境中，从而建立一个高效和强大的聊天系统。
+RASA是一款开源的对话机器人框架，能让开发者使用机器学习技术快速创建工业级的对话机器人。得益于丰富的功能、先进的机器学习能力和可以快速上手的特性，Rasa 框架是目前流行的开源对话机器人框架。
+本书首先介绍RASA的两个核心组件——Rasa NLU 和 Rasa Core 的工作流程；然后详细介绍通过使用 Rasa 生态系统从头开始构建、配置、训练和服务不同类型的对话机器人的整体过程，如任务型、FAQ、知识图谱聊天机器人等，其中包括使用基于表单（form）的对话管理、ResponseSelector 来处理闲聊和 FAQ，利用知识库来回答动态查询的问题等，以及自定义 Rasa 框架，使用对话驱动的开发模式和工具来开发对话机器人，探索机器人能做什么，并通过交互式学习来轻松修复它所犯的任何错误；最后会介绍将 Rasa 系统部署到具有高性能和高可扩展性的生产环境中，从而建立一个高效和强大的聊天系统。
 
 Rasa is an open-source conversational AI framework that enables developers to quickly create industrial-grade conversational AI using advanced machine learning techniques. Benefited from its rich functionality, powerful machine learning capabilities, and the ability to get started quickly, the Rasa framework is a popular open-source conversational bot framework today.
 The book first introduces the workflow of Rasa's two core components, Rasa NLU and Rasa Core. It then details the overall process of building, configuring, training, and serving different conversational bots from scratch. The content covers all the common bot types, such as task-oriented bots, chitchat/FAQ chatbots, knowledge-graph-based bots. In addition, it includes the usage of story-based dialog management, form-based dialog management, ResponseSelector, knowledge-based action. Furthermore, it discussed the customizing of the Rasa framework, conversation-driven development patterns, tools, how to spot the bug, fix them, etc. And finally, it advises about deploying the Rasa system into a production environment with high performance and scalability.
