@@ -1,9 +1,8 @@
-# [Chapter 01] 人机对话基础和 Rasa 简介
+# [CHAPTER01]人机对话基础和RASA简介
 
-## Rasa 版本和项目依赖
+## RASA版本和项目依赖
 
-本书所用代码均在 Rasa 3.0.X 版本中完成。
-读者可以使用：
+本书所用代码均在RASA3.0.X版本中完成。 读者可以使用：
 
 ```shell
 pip install --no-deps -r ../full_requirements.txt
