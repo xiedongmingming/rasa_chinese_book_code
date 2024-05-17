@@ -52,7 +52,7 @@ actions:
   - action_weather_form_submit
 forms:
   weather_form:
-    ignored_intents: []
+    ignored_intents: [ ]
     required_slots:
       - address
       - date-time
