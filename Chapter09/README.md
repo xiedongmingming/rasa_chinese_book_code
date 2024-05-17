@@ -1,9 +1,8 @@
-# [Chapter 09] Rasa 的工作原理与扩展性
+# [CHAPTER09] RASA的工作原理与扩展性
 
-## Rasa 版本和项目依赖
+## RASA版本和项目依赖
 
-本书所用代码均在 Rasa 3.0.X 版本中完成。
-读者可以使用：
+本书所用代码均在RASA3.0.X版本中完成。 读者可以使用：
 
 ```shell
 pip install --no-deps -r ../full_requirements.txt
@@ -23,13 +22,13 @@ pip install MicroTokenizer
 
 自定义组件位于 `rasa_custom_tokenizer/tokenizer.py`
 
-## 训练 Rasa 模型
+## 训练RASA模型
 
 ```shell
 rasa train
 ```
 
-## 使用 API 密钥启动 Rasa 动作服务器
+## 使用API密钥启动RASA动作服务器
 
 ```shell
 SENIVERSE_KEY=xxx rasa run actions
@@ -37,8 +36,7 @@ SENIVERSE_KEY=xxx rasa run actions
 
 `xxx` 是我们可以从 [https://www.seniverse.com/](https://www.seniverse.com/) 获取的 API 密钥.
 
-对于 Windows 用户，可以使用直接修改代码的方式，快速更改 API
-密钥。具体操作如下：
+对于 Windows 用户，可以使用直接修改代码的方式，快速更改 API 密钥。具体操作如下：
 
 1. 打开 `service/weather.py` 文件，定位到第 9 行，也就是：
    `KEY = os.getenv("SENIVERSE_KEY", "")  # API key` 这一行

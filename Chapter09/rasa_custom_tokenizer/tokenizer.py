@@ -44,10 +44,10 @@ class MicroTokenizer(Tokenizer):
         }
 
     def __init__(
-        self,
-        config: Dict[Text, Any],
-        model_storage: ModelStorage,
-        resource: Resource,
+            self,
+            config: Dict[Text, Any],
+            model_storage: ModelStorage,
+            resource: Resource,
     ) -> None:
         super().__init__(config)
         self._model_storage = model_storage
@@ -55,11 +55,11 @@ class MicroTokenizer(Tokenizer):
 
     @classmethod
     def create(
-        cls,
-        config: Dict[Text, Any],
-        model_storage: ModelStorage,
-        resource: Resource,
-        execution_context: ExecutionContext,
+            cls,
+            config: Dict[Text, Any],
+            model_storage: ModelStorage,
+            resource: Resource,
+            execution_context: ExecutionContext,
     ) -> MicroTokenizer:
         """Creates a new component (see parent class for full docstring)."""
         # Path to the dictionaries on the local filesystem.
@@ -104,12 +104,12 @@ class MicroTokenizer(Tokenizer):
 
     @classmethod
     def load(
-        cls,
-        config: Dict[Text, Any],
-        model_storage: ModelStorage,
-        resource: Resource,
-        execution_context: ExecutionContext,
-        **kwargs: Any,
+            cls,
+            config: Dict[Text, Any],
+            model_storage: ModelStorage,
+            resource: Resource,
+            execution_context: ExecutionContext,
+            **kwargs: Any,
     ) -> MicroTokenizer:
         """Loads a custom dictionary from model storage."""
         dictionary_path = config["dictionary_path"]

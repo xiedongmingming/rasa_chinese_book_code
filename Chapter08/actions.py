@@ -12,7 +12,7 @@ class WeatherFormAction(Action):
         return "action_weather_form_submit"
 
     def run(
-        self, dispatch: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+            self, dispatch: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict]:
         city = tracker.get_slot("address")
         date_text = tracker.get_slot("date-time")

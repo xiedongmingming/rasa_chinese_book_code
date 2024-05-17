@@ -1,9 +1,8 @@
-# [Chapter 08] 测试和生产环境部署
+# [CHAPTER08]测试和生产环境部署
 
-## Rasa 版本和项目依赖
+## RASA版本和项目依赖
 
-本书所用代码均在 Rasa 3.0.X 版本中完成。
-读者可以使用：
+本书所用代码均在RASA3.0.X版本中完成。 读者可以使用：
 
 ```shell
 pip install --no-deps -r ../full_requirements.txt
@@ -11,30 +10,29 @@ pip install --no-deps -r ../full_requirements.txt
 
 完成项目代码的依赖安装。
 
-## 安装 Docker
+## 安装DOCKER
 
-您需要 docker 才能使用 redis.
-您可以在 [https://www.docker.com/](https://www.docker.com/) 找到如何将 docker 安装到您的系统.
+您需要 docker 才能使用 redis. 您可以在 [https://www.docker.com/](https://www.docker.com/) 找到如何将 docker 安装到您的系统.
 
-## 拉取 redis 的 docker 镜像
+## 拉取REDIS的DOCKER镜像
 
 ```bash
 docker pull redis:6.2.5
 ```
 
-## 运行 redis
+## 运行REDIS
 
 ```bash
 docker run --rm -p 6379:6379 --name docker-redis redis:6.2.5
 ```
 
-## 训练 Rasa 模型
+## 训练RASA模型
 
 ```bash
 rasa train
 ```
 
-## 以默认设置运行 Rasa
+## 以默认设置运行RASA
 
 ### 运行服务器
 
@@ -50,7 +48,7 @@ CUDA_VISIBLE_DEVICES=-1 rasa run --endpoints ./endpoints_default.yml
 rasa run actions
 ```
 
-## 以多 worker 的形式运行 Rasa
+## 以多WORKER的形式运行RASA
 
 ### 运行服务器
 
@@ -66,7 +64,7 @@ CUDA_VISIBLE_DEVICES=-1 SANIC_WORKERS=5 rasa run
 ACTION_SERVER_SANIC_WORKERS=5 rasa run actions
 ```
 
-## JMeter 测试
+## JMETER测试
 
 测试文件是 RasaPerformance.jmx (软件 Apache JMeter 5.4.1)
 
@@ -74,6 +72,6 @@ ACTION_SERVER_SANIC_WORKERS=5 rasa run actions
 
 ![](media/SingleWorkerGraphResults.png)
 
-多 woker 模式下的性能：
+多WORKER模式下的性能：
 
 ![](media/MultipleWorkerTestResults.png)
