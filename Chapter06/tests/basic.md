@@ -1,4 +1,5 @@
 ## 示例 #1
+
 * query_knowledge_base: 有什么好听的[歌曲](object_type)？
     - slot{"object_type":"song"}
     - action_response_query
@@ -19,6 +20,7 @@
     - slot{"knowledge_base_last_object_type":"song"}
 
 ## 示例 #2
+
 * query_knowledge_base: 列出一些[歌手](object_type)
     - slot{"object_type":"singer"}
     - action_response_query
@@ -39,6 +41,7 @@
     - slot{"knowledge_base_last_object_type":"singer"}
 
 ## 示例 #3
+
 * query_knowledge_base: 给我列出[周杰伦](singer)的[歌曲](object_type)
     - slot{"object_type":"song"}
     - slot{"singer":"周杰伦"}
@@ -52,6 +55,7 @@
     - slot{"singer":null}
 
 ## 示例 #4
+
 * query_knowledge_base: 列一些[男性](gender)[歌手](object_type)
     - slot{"gender":"male"}
     - slot{"object_type":"singer"}

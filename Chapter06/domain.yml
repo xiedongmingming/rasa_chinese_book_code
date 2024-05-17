@@ -6,7 +6,7 @@ intents:
   - goodbye
   - greet
   - query_knowledge_base:
-      use_entities: []
+      use_entities: [ ]
   - play_song
   - play_album
 entities:

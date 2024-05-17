@@ -42,10 +42,10 @@ class MyKnowledgeBaseAction(ActionQueryKnowledgeBase):
         self.en_to_zh = EnToZh("en_to_zh.json")
 
     async def utter_objects(
-        self,
-        dispatcher: CollectingDispatcher,
-        object_type: Text,
-        objects: List[Dict[Text, Any]],
+            self,
+            dispatcher: CollectingDispatcher,
+            object_type: Text,
+            objects: List[Dict[Text, Any]],
     ) -> None:
         """
         Utters a response to the user that lists all found objects.
@@ -58,9 +58,8 @@ class MyKnowledgeBaseAction(ActionQueryKnowledgeBase):
             dispatcher.utter_message(text="找到下列{}:".format(self.en_to_zh(object_type)))
 
             repr_function = await self.knowledge_base.get_representation_function_of_object(
-                    object_type
+                object_type
             )
-
 
             for i, obj in enumerate(objects, 1):
                 dispatcher.utter_message(text=f"{i}: {repr_function(obj)}")
@@ -70,11 +69,11 @@ class MyKnowledgeBaseAction(ActionQueryKnowledgeBase):
             )
 
     def utter_attribute_value(
-        self,
-        dispatcher: CollectingDispatcher,
-        object_name: Text,
-        attribute_name: Text,
-        attribute_value: Text,
+            self,
+            dispatcher: CollectingDispatcher,
+            object_name: Text,
+            attribute_name: Text,
+            attribute_value: Text,
     ) -> None:
         """
         Utters a response that informs the user about the attribute value of the

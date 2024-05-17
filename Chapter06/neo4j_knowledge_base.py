@@ -2,13 +2,16 @@ from collections import defaultdict
 from typing import Any, Dict, List, Text
 
 from neo4j import GraphDatabase
+
 from rasa_sdk.knowledge_base.storage import KnowledgeBase
 
 
 def _dict_to_cypher(data):
     pieces = []
+
     for k, v in data.items():
         piece = "{}: '{}'".format(k, v)
+
         pieces.append(piece)
 
     join_piece = ", ".join(pieces)
@@ -17,7 +20,9 @@ def _dict_to_cypher(data):
 
 
 class Neo4jKnowledgeBase(KnowledgeBase):
+
     def __init__(self, uri, user, password):
+
         self._driver = GraphDatabase.driver(uri, auth=(user, password))
 
         self.representation_attribute = defaultdict(lambda: "name")
@@ -31,9 +36,11 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         super().__init__()
 
     def close(self):
+
         self._driver.close()
 
     async def get_attributes_of_object(self, object_type: Text) -> List[Text]:
+
         # transformer for query
         object_type = object_type.capitalize()
 
@@ -42,6 +49,7 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         return result
 
     def do_get_attributes_of_object(self, object_type) -> List[Text]:
+
         with self._driver.session() as session:
             result = session.write_transaction(
                 self._do_get_attributes_of_object, object_type
@@ -52,10 +60,13 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         return result
 
     def _do_get_attributes_of_object(self, tx, object_type) -> List[Text]:
+
         query = "MATCH (o:{object_type}) RETURN o LIMIT 1".format(
             object_type=object_type
         )
+
         print(query)
+
         result = tx.run(
             query,
         )
@@ -78,12 +89,13 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         return self.representation_attribute[object_type]
 
     def do_get_objects(
-        self,
-        object_type: Text,
-        attributions: Dict[Text, Text],
-        relations: Dict[Text, Text],
-        limit: int,
+            self,
+            object_type: Text,
+            attributions: Dict[Text, Text],
+            relations: Dict[Text, Text],
+            limit: int,
     ):
+
         with self._driver.session() as session:
             result = session.write_transaction(
                 self._do_get_objects, object_type, attributions, relations, limit
@@ -92,12 +104,13 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         return result
 
     def do_get_object(
-        self,
-        object_type: Text,
-        object_identifier: Text,
-        key_attribute: Text,
-        representation_attribute: Text,
+            self,
+            object_type: Text,
+            object_identifier: Text,
+            key_attribute: Text,
+            representation_attribute: Text,
     ):
+
         with self._driver.session() as session:
             result = session.write_transaction(
                 self._do_get_object,
@@ -112,44 +125,56 @@ class Neo4jKnowledgeBase(KnowledgeBase):
 
     @staticmethod
     def _do_get_objects(
-        tx,
-        object_type: Text,
-        attributions: Dict[Text, Text],
-        relations: Dict[Text, Text],
-        limit: int,
+            tx,
+            object_type: Text,
+            attributions: Dict[Text, Text],
+            relations: Dict[Text, Text],
+            limit: int,
     ):
+
         print("<_do_get_objects>: ", object_type, attributions, relations, limit)
+
         if not relations:
+
             # attr only, simple case
+
             query = "MATCH (o:{object_type} {attrs}) RETURN o LIMIT {limit}".format(
                 object_type=object_type,
                 attrs=_dict_to_cypher(attributions),
                 limit=limit,
             )
+
             print(query)
+
             result = tx.run(
                 query,
             )
 
             return [dict(record["o"].items()) for record in result]
+
         else:
+
             basic_query = "MATCH (o:{object_type} {attrs})".format(
                 object_type=object_type,
                 attrs=_dict_to_cypher(attributions),
             )
+
             sub_queries = []
+
             for k, v in relations.items():
                 sub_query = "MATCH (o)-[:{}]->({{name: '{}'}})".format(k, v)
 
             where_clause = "WHERE EXISTS { " + sub_query + " }"
+
             for sub_query in sub_queries[1:]:
                 where_clause = "WHERE EXISTS { " + sub_query + " " + where_clause + " }"
 
             query = (
-                basic_query + " " + where_clause + " RETURN o LIMIT {}".format(limit)
+                    basic_query + " " + where_clause + " RETURN o LIMIT {}".format(limit)
             )
 
             print(query)
+
             result = tx.run(
                 query,
             )
@@ -158,13 +183,14 @@ class Neo4jKnowledgeBase(KnowledgeBase):
 
     @staticmethod
     def _do_get_object(
-        tx,
-        object_type: Text,
-        object_identifier: Text,
-        key_attribute: Text,
-        representation_attribute: Text,
-        relation: Dict[Text, Text],
+            tx,
+            object_type: Text,
+            object_identifier: Text,
+            key_attribute: Text,
+            representation_attribute: Text,
+            relation: Dict[Text, Text],
     ):
+
         print(
             "<_do_get_object>: ",
             object_type,
@@ -173,37 +199,49 @@ class Neo4jKnowledgeBase(KnowledgeBase):
             representation_attribute,
             relation,
         )
+
         # preprocess attr value
+
         if object_identifier.isdigit():
             object_identifier = int(object_identifier)
         else:
             object_identifier = '"{}"'.format(object_identifier)
 
         # try match key first
+
         query = "MATCH (o:{object_type} {{{key}:{value}}}) RETURN o, ID(o)".format(
             object_type=object_type, key=key_attribute, value=object_identifier
         )
+
         print(query)
+
         result = tx.run(
             query,
         )
+
         record = result.single()
 
         if record:
             attr_dict = dict(record[0].items())
             oid = record[1]
         else:
+
             # try to match representation attribute
+
             query = "MATCH (o:{object_type} {{{key}:{value}}}) RETURN o, ID(o)".format(
                 object_type=object_type,
                 key=representation_attribute,
                 value=object_identifier,
             )
+
             print(query)
+
             result = tx.run(
                 query,
             )
+
             record = result.single()
+
             if record:
                 attr_dict = dict(record[0].items())
                 oid = record[1]
@@ -215,11 +253,17 @@ class Neo4jKnowledgeBase(KnowledgeBase):
             return None
 
         relation_attr = {}
+
         for k, v in relation.items():
+
             query = "MATCH (o)-[:{}]->(t) WHERE ID(o)={} RETURN t.name".format(v, oid)
+
             print(query)
+
             result = tx.run(query)
+
             record = result.single()
+
             if record:
                 attr = record[0]
             else:
@@ -230,8 +274,9 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         return {**attr_dict, **relation_attr}
 
     async def get_objects(
-        self, object_type: Text, attributes: List[Dict[Text, Text]], limit: int = 5
+            self, object_type: Text, attributes: List[Dict[Text, Text]], limit: int = 5
     ) -> List[Dict[Text, Any]]:
+
         """
         Query the knowledge base for objects of the given type. Restrict the objects
         by the provided attributes, if any attributes are given.
@@ -244,7 +289,9 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         print("get_objects", object_type, attributes, limit)
 
         # convert attributes to dict
+
         attrs = {}
+
         for a in attributes:
             attrs[a["name"]] = a["value"]
 
@@ -254,7 +301,9 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         # split into attrs and relations
         attrs_filter = {}
         relations_filter = {}
+
         relation = self.relation_attributes[object_type]
+
         for k, v in attrs.items():
             if k in relation:
                 relations_filter[relation[k]] = v
@@ -266,7 +315,7 @@ class Neo4jKnowledgeBase(KnowledgeBase):
         return result
 
     async def get_object(
-        self, object_type: Text, object_identifier: Text
+            self, object_type: Text, object_identifier: Text
     ) -> Dict[Text, Any]:
         """
         Returns the object of the given type that matches the given object identifier.
@@ -276,7 +325,9 @@ class Neo4jKnowledgeBase(KnowledgeBase):
             representation of the object
         Returns: the object of interest
         """
+
         # transformer for query
+
         object_type = object_type.capitalize()
 
         result = self.do_get_object(

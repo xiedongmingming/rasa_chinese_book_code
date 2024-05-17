@@ -10,15 +10,15 @@ class MusicDatabase(object):
         self._driver.close()
 
     def write_data(
-        self,
-        singer_id,
-        singer_name,
-        singer_gender,
-        singer_birthday,
-        song_id,
-        song_name,
-        album_id,
-        album_name,
+            self,
+            singer_id,
+            singer_name,
+            singer_gender,
+            singer_birthday,
+            song_id,
+            song_name,
+            album_id,
+            album_name,
     ):
         with self._driver.session() as session:
             greeting = session.write_transaction(
@@ -36,15 +36,15 @@ class MusicDatabase(object):
 
     @staticmethod
     def _write_data(
-        tx,
-        singer_id,
-        singer_name,
-        singer_gender,
-        singer_birthday,
-        song_id,
-        song_name,
-        album_id,
-        album_name,
+            tx,
+            singer_id,
+            singer_name,
+            singer_gender,
+            singer_birthday,
+            song_id,
+            song_name,
+            album_id,
+            album_name,
     ):
         result = tx.run(
             "MERGE (singer:Singer {id:$singer_id, name:$singer_name, gender:$singer_gender, birthday:$singer_birthday})"
@@ -70,12 +70,14 @@ if __name__ == "__main__":
         data = json.load(fd)
     db = MusicDatabase("bolt://localhost:7687", "neo4j", "neo4j")
 
+
     def get_singer_data(singer: str, attribute: str) -> str:
         for item in data["singer"]:
             if item["name"] == singer:
                 return item[attribute]
 
         raise ValueError("value not found")
+
 
     singer_id = 0
     album_id = 0
