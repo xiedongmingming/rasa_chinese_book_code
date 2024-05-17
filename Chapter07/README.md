@@ -1,9 +1,8 @@
-# [Chapter 07] 实体角色和分组
+# [CHAPTER07]实体角色和分组
 
-## Rasa 版本和项目依赖
+## RASA版本和项目依赖
 
-本书所用代码均在 Rasa 3.0.X 版本中完成。
-读者可以使用：
+本书所用代码均在RASA3.0.X版本中完成。 读者可以使用：
 
 ```shell
 pip install --no-deps -r ../full_requirements.txt
@@ -11,25 +10,25 @@ pip install --no-deps -r ../full_requirements.txt
 
 完成项目代码的依赖安装。
 
-## 训练 Rasa 模型
+## 训练RASA模型
 
 ```bash
 rasa train
 ```
 
-## 启动 Rasa 动作服务器
+## 启动RASA动作服务器
 
 ```bash
 rasa run actions
 ```
 
-## 启动 Rasa 服务器和客户端
+## 启动RASA服务器和客户端
 
 ```bash
 rasa shell
 ```
 
-## 启动 Rasa 服务器
+## 启动RASA服务器
 
 ```bash
 rasa run --cors "*"
