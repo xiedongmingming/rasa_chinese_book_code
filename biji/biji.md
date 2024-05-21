@@ -8,3 +8,10 @@ rasa-sdk==3.0.7
 rasa==3.4.4
 rasa-sdk==3.4.1
 ```
+2. 使用的虚拟环境是CONDA：rasabook
+
+
+
+Error initializing graph component for node run_LanguageModelFeaturizer1.
+
+https://github.com/RasaHQ/rasa/issues/11864

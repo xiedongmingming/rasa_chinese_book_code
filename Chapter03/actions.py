@@ -1,9 +1,9 @@
 from typing import Any, Text, Dict, List
+
 from datetime import datetime, timedelta
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-
 
 def text_date_to_int(text_date):
     #
@@ -25,7 +25,8 @@ def weekday_to_text(weekday):
     #
     return weekday_mapping[weekday]
 
-
+###################################################################
+# 继承ACTION类：
 class ActionQueryTime(Action):
 
     def name(self) -> Text:
@@ -34,8 +35,8 @@ class ActionQueryTime(Action):
 
     def run(
             self,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
+            dispatcher: CollectingDispatcher, # 用户消息对象：dispatcher
+            tracker: Tracker, # 当前的对话信息：tracker+domain
             domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
         #
@@ -43,7 +44,7 @@ class ActionQueryTime(Action):
 
         dispatcher.utter_message(text=current_time)
 
-        return []
+        return [] # 通过返回事件（EVENT）来更改当前对话状态
 
 
 class ActionQueryDate(Action):

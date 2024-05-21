@@ -2,12 +2,11 @@
 
 ## RASA版本和项目依赖
 
-本书所用代码均在RASA3.0.X版本中完成。 读者可以使用：
+本书所用代码均在RASA3.0.X版本中完成。读者可以使用：
 
 ```shell
 pip install --no-deps -r ../full_requirements.txt
 ```
-
 完成项目代码的依赖安装。
 
 ## 训练RASA模型

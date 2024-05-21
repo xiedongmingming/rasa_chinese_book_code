@@ -7,7 +7,6 @@
 ```shell
 pip install --no-deps -r ../full_requirements.txt
 ```
-
 完成项目代码的依赖安装。
 
 ## 训练RASA NLU模型
